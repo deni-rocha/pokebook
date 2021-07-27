@@ -60,9 +60,12 @@ function CardPokemon({ imgUrl, pokeName, nameAbility, effect, shortEffect }) {
           <ArrowBackRoundedIcon />{" "}
         </Button>
       </div>
-      <div className={classes.img}>
+      {imgUrl ? <div className={classes.img}>
         <img src={imgUrl} />
-      </div>
+      </div> :
+      <div className={classes.img}>
+        <h3>carregando</h3>
+      </div>}
       <ul className={classes.ul}>
         <li className={classes.li}>
           <h3>nome: </h3>

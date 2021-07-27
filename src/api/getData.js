@@ -1,12 +1,12 @@
 async function getData(id) {
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokedex/${id}/`);
+    const response = await fetch(`https://pokeapi.co/api/v2/pokedex/${id}`);
     const resJson = await response.json();
     const pokemonListOrigin = resJson.pokemon_entries.map(
       (obj) => obj.entry_number
     );
-
-    const pokemonsPromises = pokemonListOrigin.map(async (pokeId) => {
+    pokemonListOrigin.splice(151);
+    const pokemonsListPromises = pokemonListOrigin.map(async (pokeId) => {
       const responsePokeId = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${pokeId}`
       );
@@ -16,12 +16,12 @@ async function getData(id) {
         name: res.name,
         order: res.order,
         species: res.species,
-        sprites: res.sprites,
+        sprites: res.sprites.front_default,
       };
       return obj;
     });
 
-    return pokemonsPromises;
+    return pokemonsListPromises;
   } catch (e) {
     throw new Error("algo deu ruim");
   }

@@ -1,10 +1,10 @@
-import { Button} from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
-import getData from "../../api/getData";
 import Card from "../../components/Card";
 import Pagination from "../../components/Pagination";
-import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
+import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
+import getData from "../../api/getData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,13 +15,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     minHeight: "100vh",
-    fontSize: "16px"
+    fontSize: "16px",
   },
-  btnBack:{
+  btnBack: {
     alignSelf: "start",
-    padding: "1rem"
+    padding: "1rem",
   },
-  boxListagem:{
+  boxListagem: {
     padding: "1rem",
     display: "flex",
     flexDirection: "column",
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "0",
     display: "flex",
     flexWrap: "wrap",
-    listStyle: "none"
+    listStyle: "none",
   },
   li: {
     marginBottom: "1rem",
@@ -55,20 +55,31 @@ function List(props) {
   return (
     <div className={classes.root}>
       <div className={classes.btnBack}>
-      <Button onClick={() => window.history.back()}>  <ArrowBackRoundedIcon/> </Button>
+        <Button onClick={() => window.history.back()}>
+          {" "}
+          <ArrowBackRoundedIcon />{" "}
+        </Button>
       </div>
       <section className={classes.boxListagem}>
         <ul className={classes.ul}>
           {pokemons[indexPag].map((res) => {
             return (
               <li className={classes.li} key={res.id}>
-                <Card imgUrl={res.sprites.front_default} name={res.name} id={res.id}/>
+                <Card
+                  imgUrl={res.sprites}
+                  name={res.name}
+                  id={res.id}
+                />
               </li>
             );
           })}
         </ul>
         <section className={classes.paginacao}>
-          <Pagination indexPag={indexPag} setIndexPag={setIndexPag} count={numberOfPages}/>
+          <Pagination
+            indexPag={indexPag}
+            setIndexPag={setIndexPag}
+            count={numberOfPages}
+          />
         </section>
       </section>
     </div>
@@ -83,9 +94,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const id = params.id;
-  const pokemonsPromises = await getData(id);
-  const resPokemon = await Promise.all(pokemonsPromises);
+  let id = params.id;
+  const pokemonListPromises = await getData(id);
+  const resPokemon = await Promise.all(pokemonListPromises);
 
   const pokemons = [];
   let size = Math.ceil(resPokemon.length / 5);

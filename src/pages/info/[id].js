@@ -1,32 +1,54 @@
 import CardPokemon from "../../components/CardPokemon";
 import { makeStyles } from "@material-ui/core/styles";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles(() => ({
   root: {
     width: "100%",
     height: "100vh",
-    overflowX: "hidden"
+    overflowX: "hidden",
   },
 }));
 
-function Info({ url, pokeName, nameAbility, effect, shortEffect }) {
+function Info() {
   const classes = useStyles();
 
+  const router = useRouter();
+  let id = router.query.id;
+  const [url, setUrl] = useState();
+  const [pokeName, setPokeName] = useState();
+  const [nameAbility, setNameAbility] = useState();
+  const [effect, setEffect] = useState();
+  const [shortEffect, setShortEffect] = useState();
+
+  useEffect(() => {
+    const data = async () => {
+      const res = await getInfo(id);
+      setUrl(res.url);
+      setPokeName(res.pokeName);
+      setNameAbility(res.nameAbility);
+      setEffect(res.effect);
+      setShortEffect(res.shortEffect);
+    };
+
+    data();
+  }, [id]);
+    
   return (
     <div className={classes.root}>
-      <CardPokemon
-        imgUrl={url}
-        pokeName={pokeName}
-        nameAbility={nameAbility}
-        effect={effect}
-        shortEffect={shortEffect}
-      />
+        <CardPokemon
+          imgUrl={url}
+          pokeName={pokeName}
+          nameAbility={nameAbility}
+          effect={effect}
+          shortEffect={shortEffect}
+        />
     </div>
   );
 }
 
-export async function getServerSideProps({ params }) {
-  const id = params.id;
+async function getInfo(id) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
   const res = await response.json();
   const url = res.sprites.front_default;
@@ -37,14 +59,13 @@ export async function getServerSideProps({ params }) {
   const resEffect = await getAbilities(urlAbility);
   const effect = resEffect.effect;
   const shortEffect = resEffect.shortEffect;
+
   return {
-    props: {
-      url,
-      pokeName,
-      nameAbility,
-      effect,
-      shortEffect,
-    },
+    url,
+    pokeName,
+    nameAbility,
+    effect,
+    shortEffect,
   };
 }
 
