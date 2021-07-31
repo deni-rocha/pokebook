@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import Card from "../../components/Card";
-import Pagination from "../../components/Pagination";
+import Pagination from "../../components/PaginationStatic";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 import getData from "../../api/getData";
 
@@ -86,16 +86,8 @@ function List(props) {
   );
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [{ params: { id: "2" } }, { params: { id: "3" } }],
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }) {
-  let id = params.id;
-  const pokemonListPromises = await getData(id);
+export async function getStaticProps() {
+  const pokemonListPromises = await getData(2);
   const resPokemon = await Promise.all(pokemonListPromises);
 
   const pokemons = [];

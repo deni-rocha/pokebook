@@ -1,11 +1,8 @@
-async function getData(id) {
+async function getData(id, offset) {
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokedex/${id}`);
-    const resJson = await response.json();
-    const pokemonListOrigin = resJson.pokemon_entries.map(
-      (obj) => obj.entry_number
-    );
-    pokemonListOrigin.splice(151);
+    
+    const pokemonListOrigin = await getPromisesID(id, offset);
+       
     const pokemonsListPromises = pokemonListOrigin.map(async (pokeId) => {
       const responsePokeId = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${pokeId}`
@@ -25,6 +22,22 @@ async function getData(id) {
   } catch (e) {
     throw new Error("algo deu ruim");
   }
+}
+
+function getPromisesID(id, offset){
+  let data = async () =>{
+    const response = await fetch(`https://pokeapi.co/api/v2/pokedex/${id}`);
+    const resJson = await response.json();
+    const pokemonListOrigin = resJson.pokemon_entries.map(
+      (obj) => obj.entry_number
+    );
+
+    if(id != 2) return pokemonListOrigin.slice(offset, offset+31)
+
+    return pokemonListOrigin
+  }
+  
+ return data()
 }
 
 export default getData;

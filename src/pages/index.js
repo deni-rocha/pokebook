@@ -14,9 +14,9 @@ function Home() {
       case 1:
         return <Nav setMenuControl={setMenuControl} />
       case 2: 
-      return <Sobre setMenuControl={setMenuControl} content="Selecione a geração de pokemons desejada e tenha acesso a uma listagem, em seguida escolha um pokemon para ter informações sobre ele."/>
+      return <Sobre setMenuControl={setMenuControl} content="Selecione a geração de pokemons desejada e tenha acesso a uma listagem, em seguida escolha um pokemon para ter informações do mesmo."/>
       case 3: 
-      return <Sobre setMenuControl={setMenuControl} content="Contrução do site feita com Nextjs, integrado com a API (https://pokeapi.co/). Denilson Rocha &copy; 2021."/>
+      return <Sobre setMenuControl={setMenuControl} content="Site integrado com a RESTful API (https://pokeapi.co/)." copyright={true}/>
       default: 
         return <Nav setMenuControl={setMenuControl} />
     } 

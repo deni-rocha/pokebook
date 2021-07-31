@@ -101,12 +101,12 @@ const Nav = ({setMenuControl}) => {
              </div>
           <div className={classes.buttons} ref={buttonsRef}>
               
-              <Link href="/pokemonList/[id]" as="/pokemonList/2" >
+              <Link href="/pokemonList/firstGeneration">
                 <Button>
                   <a className={classes.a}>primeira geração</a> 
                 </Button>
               </Link>
-              <Link href="/pokemonList/[id]" as="/pokemonList/3">
+              <Link href="/pokemonList/secondGeneration">
                 <Button>
                   <a className={classes.a}>segunda geração</a> 
                 </Button>
@@ -116,7 +116,7 @@ const Nav = ({setMenuControl}) => {
         </ClickAwayListener>
         </li>
         <li className={classes.btnLi}> 
-          <a className={classes.a} onClick={()=>{setMenuControl({view:2})}}> <Typography component="h2"> Guia </Typography>  </a>
+          <a className={classes.a} onClick={()=>{setMenuControl({view:2})}}> <Typography component="h2"> Guia Básico </Typography>  </a>
         </li>
         <li className={classes.btnLi} onClick={()=>{setMenuControl({view:3})}}> <Typography component="h2"> Sobre </Typography></li>
       </ul>

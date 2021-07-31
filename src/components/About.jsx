@@ -2,6 +2,7 @@ import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import { Button, Typography } from "@material-ui/core";
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 const useStyles = makeStyles((theme) =>({
   root: {
@@ -19,10 +20,17 @@ const useStyles = makeStyles((theme) =>({
   },
   divContent:{
     padding: '2rem'
+  },
+  copy:{
+    display: "flex",
+    alignItems: "center",
+    "& svg":{
+      margin: "0 4px"
+    }
   }
 
 }));
-function About({ setMenuControl, content }) {
+function About({ setMenuControl, content, copyright }) {
   const classes = useStyles();
 
   return (
@@ -39,7 +47,9 @@ function About({ setMenuControl, content }) {
       </div>
     
     {/* div criada apenas para o alinhamento do flexbox */}
-     <div></div>  
+     <div>
+       {copyright ? <div className={classes.copy}> <GitHubIcon/> <h4>  deni-rocha</h4> </div>  : ''} 
+     </div>  
 
     </div>
   );
