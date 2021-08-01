@@ -38,7 +38,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     marginBottom: "1rem",
     backgroundColor: theme.palette.secondary.main,
-    width: "50vh",
+    [theme.breakpoints.down('xs')]: { 
+      width: "300px", 
+    },
+    width: "60vh", 
     display: "flex",
     flexWrap: "wrap",
     alignItems: "center",

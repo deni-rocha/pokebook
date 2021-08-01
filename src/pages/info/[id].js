@@ -56,7 +56,7 @@ async function getInfo(id) {
   const abilities = await res.abilities[0].ability;
   const nameAbility = abilities.name;
   const urlAbility = abilities.url;
-  const resEffect = await getAbilities(urlAbility);
+  const resEffect = await getAbilities(urlAbility, id);
   const effect = resEffect.effect;
   const shortEffect = resEffect.shortEffect;
 
@@ -69,10 +69,10 @@ async function getInfo(id) {
   };
 }
 
-async function getAbilities(url) {
+async function getAbilities(url, id) {
   const response = await fetch(url);
   const res = await response.json();
-  const effect_entries = res.effect_entries[1];
+  const effect_entries = id > 3 ? res.effect_entries[1] : res.effect_entries[0]; //os três primeiros da lista têm as descrições em inglês no índice 0
   const effect = effect_entries.effect;
   const shortEffect = effect_entries.short_effect;
 
