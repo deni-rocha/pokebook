@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Link from 'next/link';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { ISetMenuControl } from '../types';
 
 const useStyles = makeStyles((theme)=>({
   body: { 
@@ -73,10 +74,11 @@ const useStyles = makeStyles((theme)=>({
     textDecoration: 'none',
     }
 }));
-const Nav = ({setMenuControl}) => {
+
+const Nav = ({setMenuControl}: ISetMenuControl) => {
   const classes = useStyles();
 
-  const buttonsRef = useRef();
+  const buttonsRef: React.MutableRefObject<HTMLDivElement> = useRef();
   const [listActive, setlistActive] = useState(false)
 
   const handleClick = () => {
