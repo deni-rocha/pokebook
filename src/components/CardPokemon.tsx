@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Button} from "@material-ui/core";
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
+import { ICardPokemon } from "../types";
 
 const useStyles = makeStyles((theme) => ({
   divCard: {
@@ -52,15 +53,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CardPokemon({ imgUrl, pokeName, nameAbility, effect, shortEffect }) {
+function CardPokemon({ imgUrl, pokeName, nameAbility, effect, shortEffect}: ICardPokemon ) {
   const classes = useStyles();
 
   return (
     <div className={classes.divCard}>
       <div className={classes.btnBack}>
         <Button onClick={() => window.history.back()}>
-          {" "}
-          <ArrowBackRoundedIcon />{" "}
+          <ArrowBackRoundedIcon />
         </Button>
       </div>
       {imgUrl ? <div className={classes.img}>

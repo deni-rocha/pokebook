@@ -14,4 +14,12 @@ interface IAbout extends ISetMenuControl {
   copyright?: boolean
 }
 
-export type {IMenuControl, ISetMenuControl ,IAbout}
+interface ICardPokemon {
+  imgUrl: string;
+  pokeName: string;
+  nameAbility: string;
+  effect: string;
+  shortEffect: string;
+}
+
+export type {IMenuControl, ISetMenuControl , IAbout, ICardPokemon}
