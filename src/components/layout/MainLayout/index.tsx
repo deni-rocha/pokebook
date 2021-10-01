@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { IMainLayout } from '../../../types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MainLayout({children}){
+function MainLayout({children}: IMainLayout){
   const classes = useStyles();
 
   return(

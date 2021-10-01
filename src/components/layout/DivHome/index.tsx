@@ -2,6 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import { IDivHome } from '../../../types';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function DivHome({children, title}){
+function DivHome({children, title}: IDivHome){
   const classes = useStyles();
   
   return(

@@ -28,4 +28,14 @@ interface ICardPokemon {
   shortEffect: string
 }
 
-export type {IMenuControl, ISetMenuControl , IAbout, ICard, ICardPokemon}
+
+interface IDivHome {
+  children: React.ReactNode
+  title: string
+ }
+
+interface IMainLayout {
+  children: React.ReactNode
+}
+
+export type {IMenuControl, ISetMenuControl , IAbout, ICard, ICardPokemon, IDivHome, IMainLayout}
