@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "next/link";
+import { ICard } from "../../types";
 
 const useStyles = makeStyles((theme) => ({
   boxCard: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Card({ imgUrl, name, id }) {
+export default function Card({ imgUrl, name, id }: ICard) {
   const classes = useStyles();
 
   return (
